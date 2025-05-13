@@ -1,0 +1,24 @@
+{
+  "name": "amagtibay-cypress-exam",
+  "version": "1.0.0",
+  "description": "\"# amagtibay-cypress-exam\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/allanners/amagtibay-cypress-exam.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/allanners/amagtibay-cypress-exam/issues"
+  },
+  "homepage": "https://github.com/allanners/amagtibay-cypress-exam#readme",
+  "devDependencies": {
+    "@faker-js/faker": "^9.7.0",
+    "cypress": "^14.3.3"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "username": "sasha36264",
+  "email": "geovany.lowe@yahoo.com",
+  "password": "passw0rd",
+  "confirmPassword": "passw0rd",
+  "role": "quiz_master",
+  "roleId": "role-quiz-master",
+  "expectedRedirect": "/manage-topics"
+}
