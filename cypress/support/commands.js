@@ -1,11 +1,37 @@
 import { generateRegistrationData } from './fakerUtil'
 
-Cypress.Commands.add('createAccount', (role) => {
-    const fakerData = generateRegistrationData();
-    // fakerData.id = role.id;
-    // fakerData.value = role.value;
-    // fakerData.redirect = role.redirect;
+Cypress.Commands.add('createInvalidAccount', () => {
+    cy.readFile('cypress/fixtures/fakerData.json').then((userCredentials) => {
+        cy.get('#username')
+            .should('be.visible')
+            .and('not.be.disabled')
+            .and('have.text', '')
+            .type('a');
+        cy.get('#email')
+            .should('be.visible')
+            .and('not.be.disabled')
+            .and('have.text', '')
+            .type(userCredentials.email);
+        cy.get('#password')
+            .should('be.visible')
+            .and('not.be.disabled')
+            .and('have.text', '')
+            .type(userCredentials.password);
+        cy.get('#confirmPassword')
+            .should('be.visible')
+            .and('not.be.disabled')
+            .and('have.text', '')
+            .type(userCredentials.confirmPassword);
 
+        cy.get(userCredentials.roleId === 'role-user' ?  '#role-user' : '#role-quiz-master').check();
+        
+        cy.contains('button', 'Register').click();
+    });
+});
+
+Cypress.Commands.add('createAccount', () => {
+    const fakerData = generateRegistrationData();
+   
     cy.writeFile(`cypress/fixtures/fakerData.json`, fakerData);
 
     cy.readFile('cypress/fixtures/fakerData.json').then((userCredentials) => {
@@ -30,11 +56,11 @@ Cypress.Commands.add('createAccount', (role) => {
             .and('have.text', '')
             .type(userCredentials.confirmPassword);
 
-        cy.get(userCredentials.id === '#role-quiz-master' ?  '#role-user' : '#role-quiz-master').check();
+        cy.get(userCredentials.roleId === 'role-user' ?  '#role-user' : '#role-quiz-master').check();
         
         cy.contains('button', 'Register').click();
 
-        // Add a check for authentication indicators
+        // Authentication indicators
         cy.url().should('include', '/register');
     });
 });
